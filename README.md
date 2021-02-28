@@ -71,7 +71,7 @@ You have the following installed:
 Clone the repository to the `PROJECT_DIR` you want to use.
 
 ```bash
-git clone ... $PROJECT_DIR
+git clone https://github.com/daniel-pape/nyc-ml-app.git $PROJECT_DIR
 ```
 
 ## Running
