@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  elasticsearch:
+    container_name: dpa-es
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+      - http.cors.enabled=true
+      - http.cors.allow-origin=http://localhost:8080
+  kibana:
+    container_name: dpa-kibana
+    image: docker.elastic.co/kibana/kibana:7.11.1
+    ports:
+      - "5601:5601"
+    links:
+      - elasticsearch
+  elasticvue:
+    container_name: dpa-elasticvue
+    image:  cars10/elasticvue
+    ports:
+      - "8080:8080"
+  zookeeper:
+    container_name: dpa-zookeeper
+    image: wurstmeister/zookeeper
+    ports:
+    - "2181:2181"
+  kafka:
+    container_name: dpa-kafka
+    image: wurstmeister/kafka
+    ports:
+    - "9092:9092"
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS:
+        "INTERNAL://kafka:9090,\
+         EXTERNAL://:9092"
+      KAFKA_ADVERTISED_LISTENERS:
+        "INTERNAL://kafka:9090,\
+         EXTERNAL://localhost:9092"
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP:
+        "INTERNAL:PLAINTEXT,\
+         EXTERNAL:PLAINTEXT"
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+
