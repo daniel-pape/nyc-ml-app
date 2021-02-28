@@ -64,6 +64,7 @@ explanatory power.
 
 You have the following installed:
 * Git
+* Java 1.8 SDK
 * Docker Compose 1.27.4
 
 ## Downloading
