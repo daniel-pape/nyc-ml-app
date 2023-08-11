@@ -1,15 +1,15 @@
 package io.dpape.apps
 
-import java.time.Duration
-import java.util
-
 import io.dpape.config.{Files, KafkaConfig, KafkaTopics}
 import io.dpape.domain.Pickup
 import io.dpape.ml.{KMeansModelLoader, PickupFeaturizer}
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.functions.{col, to_timestamp}
 import org.apache.spark.sql.types.{DoubleType, StringType, StructField, StructType}
 
+import java.time.Duration
+import java.util
 import scala.collection.JavaConverters._
 
 object PredictionApp {
@@ -44,7 +44,7 @@ object PredictionApp {
               )
             )
           )
-          .load(filePath)
+          .load(filePath).withColumn("timestamp", to_timestamp(col("timestamp")))
           .as[Pickup].transform(pickupDs => model.transform(featurizer.featurize(pickupDs)))
 
         pickups.show(truncate = false)
