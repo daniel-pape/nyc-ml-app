@@ -33,7 +33,7 @@ to Elasticsearch.
 to Elasticsearch including their timestamp.
 * Kibana can be used to visualize these data on a map.
 * Make the clustering model available for online prediction:
-we run a Kafka io.dpape.dev.consumer, which processes events from topic named `request`.
+we run a Kafka consumer, which processes events from topic named `request`.
 Such an event is represented by a file path, specifying a JSON file containing
 pickups.
 
@@ -42,7 +42,7 @@ such a data location also the information on where to store the resulting predic
 would indicate how the requester wants to be notified (e.g. via email).
 This additional information would then be used to emit a corresponding new event
 to Kafka and should be picked up by another service, which does the notification.)
-On each such event, the io.dpape.dev.consumer uses a already running streaming Spark job to make predictions
+On each such event, the consumer uses a already running streaming Spark job to make predictions
 on the data specified by the event. For simplicity and illustration purposes, the resulting
 data frame is only printed to the console.
 
@@ -65,7 +65,9 @@ explanatory power.
 You have the following installed:
 * Git
 * Java 1.8 SDK
-* Docker Compose 1.27.4
+* Docker Compose 1.29.2
+* SBT 1.9.3
+* Scala 3.3.0
 
 ## Downloading
 
@@ -123,7 +125,7 @@ section below.
 ```bash
 docker-compose up
 docker exec -it dpa-kafka bash
-cd opt/kafka_2.13-2.6.0/
+cd opt/kafka_2.13-2.8.1/
 
 # Create the topic for pending request:
 ./bin/kafka-topics.sh --zookeeper zookeeper:2181 --create --topic requests --partitions 2 --replication-factor 1
@@ -136,7 +138,7 @@ Kafka and performs predictions on the pickup data
 referred by these events:
 
 * Start `$PROJECT_DIR/src/main/scala/io.dpape.apps/StreamingPredictionApp.scala`
-* Run `$PROJECT_DIR/src/main/scala/io.dpape.dev.consumer/RequestProducer.scala`
+* Run `$PROJECT_DIR/src/main/scala/producer/RequestProducer.scala`
 to push a single prediction request to Kafka
 
 ## Stopping and clean-up
