@@ -7,6 +7,8 @@ Uber taxi pickup locations.
 Some of the resulting data are made available
 for visualisation using Kibana.
 
+![nyc-ml-app.drawio.png](doc%2Fnyc-ml-app.drawio.png)
+
 ## The data set
 
 As data set the Uber pickups data are used.
@@ -123,7 +125,6 @@ section below.
 ### Creating the Kafka topics
 
 ```bash
-docker-compose up
 docker exec -it dpa-kafka bash
 cd opt/kafka_2.13-2.8.1/
 
@@ -137,7 +138,7 @@ The prediction services consumes events from
 Kafka and performs predictions on the pickup data
 referred by these events:
 
-* Start `$PROJECT_DIR/src/main/scala/io.dpape.apps/StreamingPredictionApp.scala`
+* Start `$PROJECT_DIR/src/main/scala/io.dpape.apps/PredictionApp.scala`
 * Run `$PROJECT_DIR/src/main/scala/producer/RequestProducer.scala`
 to push a single prediction request to Kafka
 
