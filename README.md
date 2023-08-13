@@ -48,6 +48,11 @@ On each such event, the consumer uses a already running streaming Spark job to m
 on the data specified by the event. For simplicity and illustration purposes, the resulting
 data frame is only printed to the console.
 
+Here is a screenshot showing the pickups and the cluster centers in Kibana:
+
+![clusters.jpg](doc%2Fclusters.jpg)
+
+
 ### What is NOT implemented?
 
 * We currently do not search (on a grid) for optimal
