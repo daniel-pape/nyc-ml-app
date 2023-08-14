@@ -35,7 +35,7 @@ to Elasticsearch.
 to Elasticsearch including their timestamp.
 * Kibana can be used to visualize these data on a map.
 * Make the clustering model available for online prediction:
-we run a Kafka consumer, which processes events from topic named `request`.
+we run a Kafka consumer, which processes events from topic named `requests`.
 Such an event is represented by a file path, specifying a JSON file containing
 pickups.
 
@@ -170,14 +170,5 @@ not recreated properly.
 
 * Avoid reformatting `data/json/pickups.json` (e.g. with an IDE): Spark
 expects the data in a single line.
-
-# Versioning and interoperability
-
-* Elasticsearch does not offer Scala 2.12 support for Spark as of 28.02.2021.
-Likewise there is no support for Spark 3.x.x.
-* kafka-json-schema-serializer-5.4.0.jar seems unavailable from https://packages.confluent.io/maven/
-or other sources. According to https://docs.confluent.io/platform/current/installation/versions-interoperability.html
-this would be the version required to use the Json serialization offered by
-Kafka and Confluences Schema registry, respectively.
 
 
