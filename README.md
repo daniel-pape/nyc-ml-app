@@ -9,6 +9,30 @@ for visualisation using Kibana.
 
 ![nyc-ml-app.drawio.png](doc%2Fnyc-ml-app.drawio.png)
 
+## Table of Content
+
+<!-- TOC -->
+* [Overview](#overview)
+  * [Table of Content](#table-of-content)
+  * [The data set](#the-data-set)
+  * [Features](#features)
+    * [What is implemented?](#what-is-implemented)
+    * [What is NOT implemented?](#what-is-not-implemented)
+* [How to use](#how-to-use)
+  * [Prerequisites](#prerequisites)
+  * [How to download](#how-to-download)
+  * [How to run the application](#how-to-run-the-application)
+    * [Starting the required services](#starting-the-required-services)
+    * [Building the model](#building-the-model)
+    * [Setting up the Elasticsearch indices](#setting-up-the-elasticsearch-indices)
+    * [Populate the Elasticsearch indices](#populate-the-elasticsearch-indices)
+    * [Creating the Kafka topics](#creating-the-kafka-topics)
+    * [Running the prediction service](#running-the-prediction-service)
+  * [Stopping and clean-up](#stopping-and-clean-up)
+* [Trouble shooting](#trouble-shooting)
+<!-- TOC -->
+
+
 ## The data set
 
 As data set the Uber pickups data are used.
@@ -76,7 +100,7 @@ You have the following installed:
 * SBT 1.9.3
 * Scala 3.3.0
 
-## Downloading
+## How to download
 
 Clone the repository to the `PROJECT_DIR` you want to use.
 
@@ -84,7 +108,7 @@ Clone the repository to the `PROJECT_DIR` you want to use.
 git clone https://github.com/daniel-pape/nyc-ml-app.git $PROJECT_DIR
 ```
 
-## Running
+## How to run the application
 
 ### Starting the required services
 
